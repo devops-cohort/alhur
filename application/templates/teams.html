@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+{% block content %}
+
+<div class="content-section">
+    <form method="POST" action="">
+        {{ form.hidden_tag() }}
+        <fieldset class="form-group">
+            <legend class="border-bottom mb-4">Create Team:</legend>
+	    <!-- Diet Name-->
+            <div class="form-group">
+                {{ form.TeamName.label }}
+                {% if form.TeamName.errors %}
+                    {{ form.TeamName(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.TeamForm.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.TeamName(class="form-control",placeholder="Team Name") }}
+                {% endif %}
+            </div>
+<!-- Description-->
+            <div class="form-group">
+                {{ form.description.label }}
+                {% if form.description.errors %}
+                    {{ form.description(class="form-control is-invalid") }}
+                    <div class="invalid-feedback">
+                        {% for error in form.description.errors %}
+                            <span>{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% else %}
+                    {{ form.description(class="form-control",placeholder="Description:") }}
+                {% endif %}
+            </div>
+            </fieldset>
+<!-- Submit-- >
+            {{ form.submit(class="btn btn-info btn-sm") }}
+    </form>
+</div>
+
+
+{% endblock %}

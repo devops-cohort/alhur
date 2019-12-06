@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+{% block body_content %}
+<h1><p><i>Suggestions And Chat Room</i></p></h1>
+	{% for post in posts %}
+		<div>
+			<h3>{{ post.title }}</h3>
+			<p> - {{ post.content }}</p>
+			<span> First Name: <i>{{ post.author.first_name }} {{ post.author.last_name }}</i></span>
+			<span> Date: <i>{{ post.date_posted }}</i></span>
+		</div>
+	{% endfor %}
+	
+{% endblock body_content %}

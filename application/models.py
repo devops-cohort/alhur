@@ -48,7 +48,6 @@ class Team(db.Model):
     def __repr__(self):
         return f"[Pokemon1: {self.Pokedex1_id} \r\nPokemon2: {self.Pokedex3_id} \r\nPokemon3: {self.Pokedex3_id} \r\nPokemon: {self.Pokedex4_id} \r\nPokemon5: {self.Pokedex5_id} \r\nPokemon6: {self.Pokedex6_id}]"
 
-
 class Posts(db.Model):
     id = db.Column(db.Integer, primary_key =True)
     title = db.Column(db.String(100), nullable=False)

@@ -64,7 +64,7 @@ class Users(db.Model, UserMixin):
     password = db.Column(db.String(100), nullable=False)
     first_name = db.Column(db.String(30), nullable=False)
     last_name=db.Column(db.String(30), nullable=False)
-    posts = db.relationship('Posts', backref='author',lazy=True)
+    posts = db.relationship('Posts', cascade = 'delete', backref = 'author', lazy=True)
     
     def __repr__(self):
         return ''.join([

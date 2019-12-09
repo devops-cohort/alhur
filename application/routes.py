@@ -1,7 +1,7 @@
 from flask import render_template,redirect, url_for, request
 from application import app, db
-from application.models import Posts, Users, Team, Pokedex
-from application.forms import PostForm, RegistrationForm, LoginForm, UpdateAccountForm, TeamForm, DeleteAccountForm
+from application.models import *
+from application.forms import PostForm, RegistrationForm, LoginForm, UpdateAccountForm, TeamForm, DeleteAccount
 from application import app,db, bcrypt
 from flask_login import login_user, current_user, logout_user, login_required
 import requests
@@ -118,7 +118,6 @@ def logout():
 @login_required
 def account():
     form = UpdateAccountForm()
-    form1 = DeleteAccountForm()
     if form.validate_on_submit():
         current_user.first_name = form.first_name.data
         current_user.last_name = form.last_name.data
@@ -129,11 +128,14 @@ def account():
         form.first_name.data = current_user.first_name
         form.last_name.data = current_user.last_name
         form.email.data = current_user.email
-    if form1.is_submitted():
-        print('delete')
-        User.query.filter_by(id = current_user.id).delete()
-        db.session.commit()
-        return redirect(url_for('home'))
 
-    return render_template('account.html', title='Account', form=form, form1=form1)
+    return render_template('account.html', title='Account', form=form)
 
+@app.route('/delete_account', methods=['GET','POST'])
+def delete_account():
+    user_id = current_user.id
+    user = Users.query.filter_by(id=user_id).first()
+    db.session.delete(user)
+    db.session.commit()
+
+    return redirect(url_for('register'))

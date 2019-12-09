@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, PasswordField, BooleanField
+from wtforms import StringField, SubmitField, PasswordField, BooleanField, DateTimeField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from application.models import Users
 from flask_login import LoginManager, current_user
@@ -70,5 +70,5 @@ class UpdateAccountForm(FlaskForm):
                 raise ValidationError('Email already in use')
     submit = SubmitField('Update')
 
-class DeleteAccountForm(FlaskForm):
-    submit = SubmitField('Delete')
+class DeleteAccount(FlaskForm):
+    delete = SubmitField('Delete your account... cannot be reversed!')

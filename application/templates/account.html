@@ -1,8 +1,7 @@
 <h1>{{ current_user.first_name }} {{ current_user.last_name}} Account Page</h1>
-<h3>This is where you manage and update your teams.</h3>
 {% extends "layout.html" %}
 {% block body_content %}
-
+<h4><i>This is where you manage your account details and can delete posts</i></h4>
 	<div class="form">
                 	<form method="POST" action="">
                         	{{ form.hidden_tag() }}
@@ -47,8 +46,9 @@
                                 	{% endif %}
 				</div>
                       		<div class="form-group">
-					{{ form.submit }} {{ form1.submit }}
+					{{ form.submit }}
 				</div>
+				<a href="{{ url_for('delete_account') }}">Delete</a>
 			</form>
 	</div>
 {% endblock body_content %}
